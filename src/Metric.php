@@ -1,4 +1,14 @@
 <?php
+/**
+ * Metric.php
+ *
+ * DogStatsD Dgram Wrapper
+ *
+ * @package   Squinones\Woof
+ * @author    Samantha Quiñones <samantha@tembies.com>
+ * @copyright 2014 Samantha Quiñones
+ * @license   http://opensource.org/licenses/MIT
+ */
 
 namespace Squinones\Woof;
 
@@ -139,6 +149,4 @@ class Metric
 
         return $dgram;
     }
-
-
-} 
+}

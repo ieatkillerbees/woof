@@ -1,9 +1,21 @@
 <?php
+/**
+ * Socket.php
+ *
+ * Simple socket wrapper
+ *
+ * @package   Squinones\Woof
+ * @author    Samantha Quiñones <samantha@tembies.com>
+ * @copyright 2014 Samantha Quiñones
+ * @license   http://opensource.org/licenses/MIT
+ */
 
 namespace Squinones\Woof;
 
 /**
  * Class Socket
+ *
+ * This is a stupidly simple socket wrapper to facilitate easier test doubles
  *
  * @package Squinones\Woof
  */
@@ -15,7 +27,7 @@ class Socket
     private $socket;
 
     /**
-     *
+     * Create the socket
      */
     public function __construct()
     {
@@ -37,11 +49,10 @@ class Socket
     }
 
     /**
-     *
+     * Close the socket
      */
     public function close()
     {
         socket_close($this->socket);
     }
-
 }

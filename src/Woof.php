@@ -1,11 +1,21 @@
 <?php
+/**
+ * Woof.php
+ *
+ * DataDogStatsD Client
+ *
+ * @package   Squinones\Woof
+ * @author    Samantha Quiñones <samantha@tembies.com>
+ * @copyright 2014 Samantha Quiñones
+ * @license   http://opensource.org/licenses/MIT
+ */
 
 namespace Squinones\Woof;
 
 /**
  * Class Woof
  *
- * A dogstatsd client
+ * A DataDogStatsD client
  *
  * @package Squinones\Woof
  */
@@ -24,7 +34,7 @@ class Woof
     /**
      * @var resource
      */
-    private   $socket;
+    private $socket;
 
     /**
      * @param string $hostname
@@ -161,4 +171,4 @@ class Woof
         $socket->close();
         return true;
     }
-} 
+}
