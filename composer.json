@@ -1,19 +1,20 @@
 {
     "name": "squinones/woof",
-    "description": "DataDog StatsD Client",
-    "autoload": { "psr-4": { "Squinones\\Woof\\": "src/" }},
-    "require-dev": {
-        "phpunit/phpunit": "~4.1"
-    },
-    "license": "mit",
+    "description": "Woof - DataDogStatsD Client",
+    "keywords": ["statsd", "profiling", "logging", "devops", "datadog"],
+    "homepage": "https://github.com/squinones/woof",
+    "license": "MIT",
     "authors": [
         {
             "name": "Samantha Quiñones",
-            "email": "samantha@tembies.com"
+            "email": "samantha@tembies.com",
+            "homepage": "http://tembies.com"
         }
     ],
     "minimum-stability": "dev",
-    "require": {
-
+    "prefer-stable": true,
+    "autoload": { "psr-4": { "Squinones\\Woof\\": "src/" } },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2"
     }
 }
