@@ -1,0 +1,26 @@
+<phpunit bootstrap="vendor/autoload.php"
+         backupGlobals="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="false"
+         mapTestClassNameToCoveredClassName="false"
+         testdox="true"
+         colors="true">
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false" />
+    </logging>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>src/</directory>
+        </whitelist>
+        <blacklist>
+            <directory>vendor/</directory>
+        </blacklist>
+    </filter>
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
