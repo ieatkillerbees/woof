@@ -16,6 +16,23 @@ class WoofTest extends PHPUnit_Framework_TestCase
         return $socket;
     }
 
+    public function testSendFailure()
+    {
+        $socket = $this->getSocket();
+        $socket->expects($this->any())
+            ->method('send')
+            ->with(
+                $this->equalTo("foo:1|c|@1.000"),
+                $this->equalTo("localhost"),
+                $this->equalTo(8125)
+            )
+            ->willThrowException(new \Squinones\Woof\Exceptions\SocketException());
+        $client = new \Squinones\Woof\Woof();
+        $client->setSocket($socket);
+        $this->setExpectedException('Squinones\Woof\Exceptions\SocketException');
+        $client->increment('foo');
+    }
+
     /**
      *
      */
@@ -159,4 +176,3 @@ class WoofTest extends PHPUnit_Framework_TestCase
         }
     }
 }
- 

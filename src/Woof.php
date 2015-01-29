@@ -11,6 +11,7 @@
  */
 
 namespace Squinones\Woof;
+use Squinones\Woof\Exceptions\SocketException;
 
 /**
  * Class Woof
@@ -62,6 +63,7 @@ class Woof
         if (!isset ($this->socket)) {
             $this->socket = new Socket();
         }
+
         return $this->socket;
     }
 
@@ -156,9 +158,10 @@ class Woof
     /**
      * @param Metric $metric
      *
+     * @param  bool $retry
      * @return bool
      */
-    protected function send(Metric $metric)
+    protected function send(Metric $metric, $retry = true)
     {
         $rate = $metric->getSampleRate();
         if ($rate < 1 && !$this->randomizeSample($rate)) {
@@ -167,8 +170,16 @@ class Woof
 
         $dgram  = (string) $metric;
         $socket = $this->getSocket();
-        $socket->send($dgram, $this->hostname, $this->port);
-        $socket->close();
+        try {
+            $socket->send($dgram, $this->hostname, $this->port);
+        } catch (SocketException $exc) {
+            if ($retry) {
+                $socket->close();
+                unset($this->socket);
+                $this->send($metric, false);
+            }
+            throw $exc;
+        }
         return true;
     }
 }

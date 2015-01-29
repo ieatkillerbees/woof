@@ -11,6 +11,7 @@
  */
 
 namespace Squinones\Woof;
+use Squinones\Woof\Exceptions\SocketException;
 
 /**
  * Class Socket
@@ -45,7 +46,11 @@ class Socket
      */
     public function send($dgram, $hostname, $port)
     {
-        return socket_sendto($this->socket, $dgram, strlen($dgram), 0, $hostname, $port);
+        $sent = socket_sendto($this->socket, $dgram, strlen($dgram), 0, $hostname, $port);
+        if ($sent === false) {
+            throw new SocketException("Socket unavailable");
+        }
+        return $sent;
     }
 
     /**
